@@ -148,6 +148,14 @@ def main():
         
             else :
                 st.info("Error! provide more tokens please")
+            
+            with open("sample.json", "w") as f:
+                f.write(data)
+            # with open("sample.json", "w") as outfile:
+            #     json.dump(dictionary, outfile)
+            
+            # Provide a download button for the JSON file
+            st.download_button("Download JSON file", data)
 
 if __name__ == "__main__":
     # Set up the working directory
