@@ -82,7 +82,7 @@ def main():
     }
     
     st.title(" AI Medical Assistant ")
-    st.text_input(' Powered by 3MIS ')
+    st.text(' Powered by 3MIS ')
     tab1, tab2 = st.tabs(["Record Audio", "Upload Audio"])
 
     # Record Audio tab
@@ -155,7 +155,7 @@ def main():
             #     json.dump(dictionary, outfile)
             
             # Provide a download button for the JSON file
-            st.download_button("Download JSON file", data)
+            st.download_button("Download JSON file", {data})
 
 if __name__ == "__main__":
     # Set up the working directory
