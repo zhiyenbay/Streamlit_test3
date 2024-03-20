@@ -15,25 +15,7 @@ dotenv.load_dotenv()
 openai_api_key = st.sidebar.text_input('OpenAI API Key')
 client = openai.OpenAI(api_key = openai_api_key)
 
-schema = {
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "title": "Document",
-    "type": "object",
-    "properties": {
-        "document": {
-            "type": "object",
-            "properties": {
-                "falling_down_in_3_month": {"type": "string", "enum": ["Да", "Нет"],"description": "This field answers to the question if the patient has fallen recently or not"},
-                "accompanying_illness":  {"type": "string", "enum": ["Да", "Нет"], "description": "are there any signs of concomitant diseasess"},
-                "walking_difficulties": {"type": "string", "enum": ["ходит сам (даже если при помощи кого-то) или строгий постельный режим (неподвжино)", "Костыли/ходунки/трость", "Опирается о мебель или стены для поддержания"], "description":"This field answers to the question: does patient walk independently?"},
-                "intravenous_drip": {"type": "string", "enum": ["Да", "Нет"], "description":"This field answers to the question: if the patient is taking intravenous infusion?" },
-                "mobility":  {"type": "string", "enum": ["Нормально (ходи свободно)", "Слегка несвободная (ходит с остановками, шаги короткие, иногда с зарежкой)", "Нарушения (не может встать, ходит опираясь, смотрит вниз)"], "description": "Does the patient have walking problems?"},
-                "psychology": {"type": "string", "enum": ["Осознает свою способность двигаться", "Не знает или забывает, что нужна помощь при движении"], "description" : "what is the patient's mental state?"},
-              }
-          },
-    "required": ["document"]
-    }
-}
+
 
 
 def transcribe(audio_file):
@@ -79,7 +61,26 @@ def main():
     """
     Main function to run the Whisper Transcription app.
     """
-    st.title("Whisper Transcription")
+    schema = {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "title": "Document",
+        "type": "object",
+        "properties": {
+            "document": {
+                "type": "object",
+                "properties": {
+                    "falling_down_in_3_month": {"type": "string", "enum": ["Да", "Нет"],"description": "This field answers to the question if the patient has fallen recently or not"},
+                    "accompanying_illness":  {"type": "string", "enum": ["Да", "Нет"], "description": "are there any signs of concomitant diseasess"},
+                    "walking_difficulties": {"type": "string", "enum": ["ходит сам (даже если при помощи кого-то) или строгий постельный режим (неподвжино)", "Костыли/ходунки/трость", "Опирается о мебель или стены для поддержания"], "description":"This field answers to the question: does patient walk independently?"},
+                    "intravenous_drip": {"type": "string", "enum": ["Да", "Нет"], "description":"This field answers to the question: if the patient is taking intravenous infusion?" },
+                    "mobility":  {"type": "string", "enum": ["Нормально (ходи свободно)", "Слегка несвободная (ходит с остановками, шаги короткие, иногда с зарежкой)", "Нарушения (не может встать, ходит опираясь, смотрит вниз)"], "description": "Does the patient have walking problems?"},
+                    "psychology": {"type": "string", "enum": ["Осознает свою способность двигаться", "Не знает или забывает, что нужна помощь при движении"], "description" : "what is the patient's mental state?"},
+                  }
+              },
+        "required": ["document"]
+        }
+    }
+    st.title("3MIS AI Medical Assistant")
 
     tab1, tab2 = st.tabs(["Record Audio", "Upload Audio"])
 
