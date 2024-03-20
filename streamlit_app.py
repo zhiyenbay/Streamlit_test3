@@ -80,8 +80,9 @@ def main():
         "required": ["document"]
         }
     }
-    st.title("3MIS AI Medical Assistant")
-
+    
+    st.title(" AI Medical Assistant ")
+    st.text_input(' Powered by 3MIS ')
     tab1, tab2 = st.tabs(["Record Audio", "Upload Audio"])
 
     # Record Audio tab
