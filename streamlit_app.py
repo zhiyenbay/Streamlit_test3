@@ -2,6 +2,7 @@ import os
 import sys
 import datetime
 import openai
+from openai import OpenAI
 import dotenv
 import streamlit as st
 
