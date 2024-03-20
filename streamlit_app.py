@@ -2,7 +2,7 @@ import os
 import sys
 import datetime
 import openai
-from openai import OpenAI
+# from openai import OpenAI
 import dotenv
 import streamlit as st
 
@@ -11,7 +11,7 @@ from audio_recorder_streamlit import audio_recorder
 # import API key from .env file
 dotenv.load_dotenv()
 # openai.api_key = os.getenv("asd")
-client = OpenAI()
+client = openai.OpenAI()
 openai_api_key = st.sidebar.text_input('OpenAI API Key')
 
 # transcription = client.audio.transcriptions.create(
