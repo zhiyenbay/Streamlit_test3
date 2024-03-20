@@ -23,7 +23,7 @@ client = openai.OpenAI(api_key = openai_api_key)
 
 def transcribe(audio_file):
     # transcript = openai.Audio.transcribe("whisper-1", audio_file)
-    transcript = openai.audio.transcriptions.create(
+    transcript = client.audio.transcriptions.create(
         model="whisper-1",
         file=audio_file
     )
