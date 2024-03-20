@@ -11,8 +11,9 @@ from audio_recorder_streamlit import audio_recorder
 # import API key from .env file
 dotenv.load_dotenv()
 # openai.api_key = os.getenv("asd")
-# client = openai.OpenAI()
+
 openai_api_key = st.sidebar.text_input('OpenAI API Key')
+client = openai.OpenAI(api_key = openai_api_key)
 
 # transcription = client.audio.transcriptions.create(
 #   model="whisper-1", 
